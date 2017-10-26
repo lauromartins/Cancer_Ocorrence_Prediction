@@ -1,0 +1,2 @@
+# Cancer_Ocorrence_Prediction
+Este projeto é parte integrante do curso Big Data Analytics com R e Microsoft Azure da Formação Cientista de Dados. O objetivo é analisar dados reais sobre exames de câncer de mama realizado com mulheres nos EUA e, então, prever a ocorrência de novos casos. Link para obter os dados públicos: http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29
