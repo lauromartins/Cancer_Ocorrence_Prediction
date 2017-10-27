@@ -62,7 +62,7 @@ normalizar <- function(x) {
   return ((x - min(x)) / (max(x) - min(x)))
 }
 
-# Testando a funcao de normalização - os resultados devem ser identicos
+# Testando a funcao de normalizacao - os resultados devem ser identicos
 #normalizar(c(1, 2, 3, 4, 5))
 #normalizar(c(10, 20, 30, 40, 50))
 
@@ -104,8 +104,9 @@ class(modelo)
 ```
 
 
-## Etapa 4 - Avaliando a Performance do Modelo
 
+
+## Etapa 4 - Avaliando a Performance do Modelo
 
 
 ```{r performance}
@@ -116,22 +117,24 @@ library(gmodels)
 # Criando uma tabel acruzada dos dados previstos x dados atuais
 CrossTable(x = dados_teste_labels, y = modelo, prop.chisq = FALSE)
 
+
 # Interpretando os Resultados
-# A tabela cruzada mostra 4 possíveis valores, que representam os falso/verdadeiro positivo e negativo
+# A tabela cruzada mostra 4 possiveis valores, que representam os falso/verdadeiro positivo e negativo
 # A primeira coluna lista os labels originais nos dados observados
-# As duas colunas do modelo (Benigno e Maligno) do modelo, mostram os resultados da previsão
+# As duas colunas do modelo (Benigno e Maligno) do modelo, mostram os resultados da previsao
 # Temos:
-# Cenário 1: Célula Benigno (label) x Benigno (Modelo) - 61 casos - true negative 
-# Cenário 2: Célula Benigno (label) x Maligno (Modelo) - 00 casos - false positive 
-# Cenário 3: Célula Maligno (label) x Benigno (Modelo) - 02 casos - false negative (o modelo errou)
-# Cenário 4: Célula Maligno (label) x Maligno (Modelo) - 37 casos - true positive 
+# Cenario 1: Celula Benigno (label) x Benigno (Modelo) - 61 casos - true negative 
+# Cenario 2: Celula Benigno (label) x Maligno (Modelo) - 00 casos - false positive 
+# Cenario 3: Celula Maligno (label) x Benigno (Modelo) - 02 casos - false negative (o modelo errou)
+# Cenario 4: Celula Maligno (label) x Maligno (Modelo) - 37 casos - true positive 
 
-# Lendo a Confusion Matrix (Perspectva de ter ou não a doença):
 
-# True Negative  = nosso modelo previu que a pessoa NÃO tinha a doença e os dados mostraram que realmente a pessoa NÃO tinha a doença
-# False Positive = nosso modelo previu que a pessoa tinha a doença e os dados mostraram que NÃO, a pessoa tinha a doença
-# False Negative = nosso modelo previu que a pessoa NÃO tinha a doença e os dados mostraram que SIM, a pessoa tinha a doença
-# True Positive = nosso modelo previu que a pessoa tinha a doença e os dados mostraram que SIM, a pessoa tinha a doença
+# Lendo a Confusion Matrix (Perspectva de ter ou nao a doenca):
+
+# True Negative  = nosso modelo previu que a pessoa NAO tinha a doenca e os dados mostraram que realmente a pessoa NAO tinha a doenca
+# False Positive = nosso modelo previu que a pessoa tinha a doenca e os dados mostraram que NAO, a pessoa tinha a doenca
+# False Negative = nosso modelo previu que a pessoa NAO tinha a doenca e os dados mostraram que SIM, a pessoa tinha a doenca
+# True Positive = nosso modelo previu que a pessoa tinha a doenca e os dados mostraram que SIM, a pessoa tinha a doenca
 
 # Falso Positivo - Erro Tipo I
 # Falso Negativo - Erro Tipo II
@@ -142,16 +145,17 @@ CrossTable(x = dados_teste_labels, y = modelo, prop.chisq = FALSE)
 
 
 
+
 ## Etapa 5 - Otimizacao do Modelo
  
  
 ```{r otimizacao}
 ## Etapa 5: Otimizando a perfomance do modelo
 
-# Usando a função scale() para padronizar o z-score 
+# Usando a funcao scale() para padronizar o z-score 
 dados_z <- as.data.frame(scale(dados[-1]))
 
-# Confirmando transformação realizada com sucesso
+# Confirmando transformacao realizada com sucesso
 summary(dados_z$area_mean)
 
 # Criando novos datasets de treino e de teste
@@ -166,6 +170,7 @@ modelo_v2 <- knn(train = dados_treino, test = dados_teste, cl = dados_treino_lab
 
 # Criando a cross table para comparar dados previstos com os dados reais
 CrossTable(x = dados_teste_labels, y = modelo_v2, prop.chisq = FALSE)
+
 
 # Testando diferentes valores para k
 # Criando dados de treino e dados de teste
@@ -194,6 +199,7 @@ CrossTable(x = dados_teste_labels, y = modelo_v2, prop.chisq = FALSE)
 # dados_test_pred <- knn(train = dados_treino, test = dados_teste, cl = dados_treino_labels, k=27)
 # CrossTable(x = dados_teste_labels, y = dados_test_pred, prop.chisq=FALSE)
 ```
+
 
 
 
